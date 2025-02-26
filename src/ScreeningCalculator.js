@@ -1,61 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css';
-import EnhancedPICOTSFramework from './EnhancedPICOTSFramework';
-import RWEvsRCTTool from './RWEvsRCTTool';
-
-const HealthAnalyticsDashboard = () => {
-  const [activeTab, setActiveTab] = useState('screening');
-
-  return (
-    <div className="dashboard-container">
-      <header className="dashboard-header">
-        <h1>Health Research Evaluation Dashboard</h1>
-        <p className="subtitle">Final Project for Health Care Analytics and Society Winter 2025</p>
-      </header>
-
-      <main className="dashboard-main">
-        {/* Tab Navigation */}
-        <div className="tabs-container">
-          <nav className="tabs-nav">
-            <button
-              onClick={() => setActiveTab('screening')}
-              className={`tab ${activeTab === 'screening' ? 'active' : ''}`}
-            >
-              Screening Test Calculator
-            </button>
-            <button
-              onClick={() => setActiveTab('picots')}
-              className={`tab ${activeTab === 'picots' ? 'active' : ''}`}
-            >
-              PICOTS Framework
-            </button>
-            <button
-              onClick={() => setActiveTab('rwerct')}
-              className={`tab ${activeTab === 'rwerct' ? 'active' : ''}`}
-            >
-              RWE vs RCT Tool
-            </button>
-          </nav>
-        </div>
-
-        {/* Tab Content */}
-        <div className="tab-content">
-          {activeTab === 'screening' ? (
-            <ScreeningCalculator />
-          ) : activeTab === 'picots' ? (
-            <EnhancedPICOTSFramework />
-          ) : (
-            <RWEvsRCTTool />
-          )}
-        </div>
-      </main>
-
-      <footer className="dashboard-footer">
-        <p>Created for HCAS Final Challenge - Winter 2025</p>
-      </footer>
-    </div>
-  );
-};
+import './PICOTSScreeningDashboard.css';
 
 const ScreeningCalculator = () => {
   const [values, setValues] = useState({
@@ -234,8 +178,4 @@ const ScreeningCalculator = () => {
   );
 };
 
-
-
-
-
-export default HealthAnalyticsDashboard;
+export default ScreeningCalculator;

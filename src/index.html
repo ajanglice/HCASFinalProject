@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.77">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Epidemiology Dashboard Debugger&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Explicitly include all required scripts in order --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react@18/umd/react.development.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/babel-standalone@6/babel.min.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/recharts@2.5.0/umd/Recharts.min.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>max-width: 800px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 0 auto;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 20px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.error-message {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: red;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: #ffeeee;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid red;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 10px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.chart-container {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 400px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Debugging function to check library availability</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const checkLibraries = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const libraries = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{ name: 'React', obj: window.React },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{ name: 'ReactDOM', obj: window.ReactDOM },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>{ name: 'Recharts', obj: window.Recharts }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const missingLibraries = libraries.filter(lib =&gt; !lib.obj);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (missingLibraries.length &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const missingNames = missingLibraries.map(lib =&gt; lib.name).join(', ');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error(`Missing libraries: ${missingNames}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Main Dashboard Component</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const EpidemiologyDashboard = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Check if libraries are loaded</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!checkLibraries()) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return (</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="error-message"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>Error: Required libraries are not loaded.<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>Please check your internet connection and script includes.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Destructure Recharts components safely</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>LineChart,<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>Line,<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>XAxis,<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>YAxis,<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>CartesianGrid,<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>Tooltip,<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>Legend,<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>ResponsiveContainer<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} = window.Recharts;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// State hooks</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [population, setPopulation] = React.useState(10000);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [incidence, setIncidence] = React.useState(500);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const [recoveryRate, setRecoveryRate] = React.useState(20);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Generate time series data</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const generateTimeSeriesData = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const years = 6;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let data = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let currentCases = 0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>for (let year = 0; year &lt; years; year++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>// Add new cases each year</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>currentCases += incidence;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>// Apply recovery</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (year &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const recoveredCases = Math.min(</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>Math.floor(currentCases * (recoveryRate / 100)),<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>currentCases</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>currentCases -= recoveredCases;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>// Ensure cases don't exceed population</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>currentCases = Math.min(currentCases, population);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>data.push({</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>name: `Year ${year}`,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>cases: currentCases,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>incidence: incidence</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.log('Generated Data:', data);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return data;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Generate data</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const chartData = generateTimeSeriesData();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return (</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h1&gt;Epidemiology Dashboard&lt;/h1&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>Population:<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;input<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>type="range"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>min="1000"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>max="100000"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>value={population}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>onChange={(e) =&gt; setPopulation(Number(e.target.value))}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>{population}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/label&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>New Cases per Year:<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;input<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>type="range"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>min="10"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>max="5000"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>value={incidence}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>onChange={(e) =&gt; setIncidence(Number(e.target.value))}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>{incidence}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/label&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>Recovery Rate (%):<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;input<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>type="range"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>min="0"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>max="100"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>value={recoveryRate}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>onChange={(e) =&gt; setRecoveryRate(Number(e.target.value))}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>{recoveryRate}%</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="chart-container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;ResponsiveContainer width="100%" height={400}&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;LineChart data={chartData}&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;CartesianGrid strokeDasharray="3 3" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;XAxis dataKey="name" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;YAxis /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;Tooltip /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;Legend /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;Line<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>type="monotone"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>dataKey="cases"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>stroke="#8884d8"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>name="Total Cases"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;Line<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>type="monotone"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>dataKey="incidence"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>stroke="#82ca9d"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>name="New Cases"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/LineChart&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/ResponsiveContainer&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Render the application</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const renderApp = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Use ReactDOM.createRoot for React 18</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const root = ReactDOM.createRoot(document.getElementById('root'));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>root.render(&lt;EpidemiologyDashboard /&gt;);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (error) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error('Rendering error:', error);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Fallback to older ReactDOM.render if createRoot fails</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>ReactDOM.render(&lt;EpidemiologyDashboard /&gt;, document.getElementById('root'));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>} catch (fallbackError) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>console.error('Fallback rendering error:', fallbackError);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>// Display error message in the DOM</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>document.getElementById('root').innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div style="color: red; border: 1px solid red; padding: 10px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h2&gt;Error Rendering Dashboard&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p&gt;${fallbackError.message}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Ensure DOM is fully loaded before rendering</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (document.readyState === 'loading') {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.addEventListener('DOMContentLoaded', renderApp);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>renderApp();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+</body>
+</html>
