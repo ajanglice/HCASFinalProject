@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/HCASFinalProject/static/css/main.e91738e3.css",
+    "main.js": "/HCASFinalProject/static/js/main.e38091d3.js",
+    "static/js/453.c4a759ba.chunk.js": "/HCASFinalProject/static/js/453.c4a759ba.chunk.js",
+    "index.html": "/HCASFinalProject/index.html",
+    "main.e91738e3.css.map": "/HCASFinalProject/static/css/main.e91738e3.css.map",
+    "main.e38091d3.js.map": "/HCASFinalProject/static/js/main.e38091d3.js.map",
+    "453.c4a759ba.chunk.js.map": "/HCASFinalProject/static/js/453.c4a759ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e91738e3.css",
+    "static/js/main.e38091d3.js"
+  ]
+}
